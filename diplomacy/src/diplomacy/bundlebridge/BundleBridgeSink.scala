@@ -24,7 +24,7 @@ case class BundleBridgeSink[T <: Data](
   ): T = {
     val io: T = IO(
       if (inferOutput) Output(chiselTypeOf(bundle))
-      else chiselTypeClone(bundle)
+      else chiselTypeClone[T](bundle)
     )
     io.suggestName(valName.value)
     io <> bundle

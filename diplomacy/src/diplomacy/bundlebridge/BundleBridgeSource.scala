@@ -25,7 +25,7 @@ case class BundleBridgeSource[T <: Data](
   ): T = {
     val io: T = IO(
       if (inferInput) Input(chiselTypeOf(bundle))
-      else Flipped(chiselTypeClone(bundle))
+      else Flipped(chiselTypeClone[T](bundle))
     )
     io.suggestName(valName.value)
     bundle <> io
